@@ -1,15 +1,14 @@
 package main.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-@Getter
-@Setter
-@ToString
+@Data
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Parrot {
 
-    private String name;
+    String name;
 
     public Parrot() {
         name = "Test";

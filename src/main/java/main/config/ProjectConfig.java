@@ -1,6 +1,7 @@
 package main.config;
 
 import main.model.Parrot;
+import main.model.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -46,6 +47,20 @@ public class ProjectConfig {
     @Bean
     public Integer five() {
         return 5;
+    }
+
+    @Bean(name = "parrot")
+    public Parrot parrot() {
+        Parrot p = new Parrot();
+        p.setName("parrot");
+        return p;
+    }
+
+    @Bean(name = "person")
+    public Person person() {
+        Person p = new Person();
+        p.setName("Serhii");
+        return p;
     }
 
 }

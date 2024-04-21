@@ -4,6 +4,7 @@ import main.config.ProjectConfig;
 import main.model.Car;
 import main.model.Dog;
 import main.model.Parrot;
+import main.model.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Objects;
@@ -13,6 +14,15 @@ public class Man {
 
     public static void main(String[] args) {
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
+
+        Person person = context.getBean("person", Person.class);
+        System.out.println(person);
+
+        Parrot parrot = context.getBean("parrot", Parrot.class);
+        System.out.println(parrot);
+
+
+
 //        Parrot getParrot = context.getBean(Parrot.class);
 //        getParrot.setName("Tom");
 //
@@ -37,16 +47,16 @@ public class Man {
 
         //Создать четыре машины, бмв добавить в контекст
 
-        Car car[] = new Car[4];
-        Car audi = new Car("audi", "red");
-        Car bmw1 = new Car("bmw1", "blue");
-        Car tesla =new Car("tesla", "white");
-        Car bmw2 = new Car("bmw2", "black");
-
-        car[0] = audi;
-        car[1] = bmw1;
-        car[2] = tesla;
-        car[3] = bmw2;
+//        Car car[] = new Car[4];
+//        Car audi = new Car("audi", "red");
+//        Car bmw1 = new Car("bmw1", "blue");
+//        Car tesla =new Car("tesla", "white");
+//        Car bmw2 = new Car("bmw2", "black");
+//
+//        car[0] = audi;
+//        car[1] = bmw1;
+//        car[2] = tesla;
+//        car[3] = bmw2;
 
 //        for (Car carFromArray : car) {
 //            String name = carFromArray.getName();
@@ -56,16 +66,16 @@ public class Man {
 //            }
 //        }
 
-        Supplier<Car> carSupplier1 = () -> bmw1;
-        context.registerBean(bmw1.getName(), Car.class, carSupplier1, bc -> bc.setPrimary(true));
-
-        Supplier<Car> carSupplier2 = () -> bmw2;
-        context.registerBean(bmw2.getName(), Car.class, carSupplier2);
-
-
-        Car bmw = context.getBean(Car.class);
-        System.out.println(bmw.getName());
-        System.out.println(bmw.getColor());
+//        Supplier<Car> carSupplier1 = () -> bmw1;
+//        context.registerBean(bmw1.getName(), Car.class, carSupplier1, bc -> bc.setPrimary(true));
+//
+//        Supplier<Car> carSupplier2 = () -> bmw2;
+//        context.registerBean(bmw2.getName(), Car.class, carSupplier2);
+//
+//
+//        Car bmw = context.getBean(Car.class);
+//        System.out.println(bmw.getName());
+//        System.out.println(bmw.getColor());
 
     }
 

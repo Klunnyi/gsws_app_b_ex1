@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 public class Car {
 
     String name;
+
     String color;
 
 }
