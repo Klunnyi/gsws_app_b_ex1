@@ -60,6 +60,7 @@ public class ProjectConfig {
     public Person person() {
         Person p = new Person();
         p.setName("Serhii");
+        p.setParrot(parrot());
         return p;
     }
 
