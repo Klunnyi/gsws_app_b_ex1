@@ -11,6 +11,7 @@ public class Parrot {
     String name;
 
     public Parrot() {
+        System.out.println("Parrot created");
         name = "Test";
     }
 
