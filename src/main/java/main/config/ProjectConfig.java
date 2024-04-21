@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Primary;
 public class ProjectConfig {
 
     @Bean(name = "koko")
-    @Primary
+//    @Primary
     public Parrot parrot1() {
         var p = new Parrot();
         p.setName("Koko");
@@ -50,17 +50,18 @@ public class ProjectConfig {
     }
 
     @Bean(name = "parrot")
+    @Primary
     public Parrot parrot() {
         Parrot p = new Parrot();
-        p.setName("parrot");
+        p.setName("Test");
         return p;
     }
 
     @Bean(name = "person")
-    public Person person() {
+    public Person person(Parrot parrot) {
         Person p = new Person();
         p.setName("Serhii");
-        p.setParrot(parrot());
+        p.setParrot(parrot);
         return p;
     }
 
