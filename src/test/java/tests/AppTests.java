@@ -3,6 +3,7 @@ package tests;
 import main.config.ProjectConfig;
 import main.model.Dog;
 import main.model.Parrot;
+import main.model.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +28,7 @@ public class AppTests {
     public void testKokoIsInTheSpringContext() {
         Parrot p = context.getBean(Parrot.class);
 
-        assertEquals("Koko", p.getName());
+        assertEquals("Test", p.getName());
     }
 
     @Test
@@ -49,11 +50,11 @@ public class AppTests {
     }
 
     @Test
-    @DisplayName("Test that the Parrot instance parrot1 named Koko is primary")
+    @DisplayName("Test that the Parrot instance parrot1 named Test is primary")
     public void testParrot1IsPrimary() {
         Parrot p = context.getBean(Parrot.class);
 
-        assertEquals("Koko", p.getName());
+        assertEquals("Test", p.getName());
     }
 
     @Test
@@ -81,6 +82,26 @@ public class AppTests {
         assertNotNull(dog);
         assertEquals("Rex", dog.getName());
     }
+
+
+    @Test
+    @DisplayName("Test that a Person instance has been added to the Spring context")
+    public void testSerhiiIsinTheSpringContext() {
+        Person p = context.getBean(Person.class);
+
+        assertEquals("Serhii", p.getName());
+    }
+
+    @Test
+    @DisplayName("Test that the Person instance in the Spring context" +
+            "owns the Parrot instance from the Spring context")
+    public void testEllaOwnsKoko() {
+        Person p = context.getBean(Person.class);
+
+        assertNotNull(p.getParrot());
+        assertEquals("Test", p.getParrot().getName());
+    }
+
 
 
 }
