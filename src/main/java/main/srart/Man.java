@@ -1,14 +1,8 @@
-package main.main;
+package main.srart;
 
 import main.config.ProjectConfig;
-import main.model.Car;
-import main.model.Dog;
-import main.model.Parrot;
 import main.model.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Objects;
-import java.util.function.Supplier;
 
 public class Man {
 
@@ -18,8 +12,10 @@ public class Man {
         Person person = context.getBean("person", Person.class);
         System.out.println(person);
 
-        Parrot parrot = context.getBean("parrot", Parrot.class);
-        System.out.println(parrot);
+        System.out.println(person.getParrot().getName());
+
+//        Parrot parrot = context.getBean("parrot", Parrot.class);
+//        System.out.println(parrot);
 
 
 

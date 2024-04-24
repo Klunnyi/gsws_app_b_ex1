@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Component
+//@Component
 public class Parrot {
 
     String name;
 
     public Parrot() {
-        System.out.println("Parrot created");
+//        System.out.println("Parrot created");
         name = "Test";
     }
 
