@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Data
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Component(value = "p")
+@Component(value = "person")
 public class Person {
 
     String name;
@@ -20,10 +20,9 @@ public class Person {
     Parrot parrot;
 
     @Autowired
-    public Person(Qualifier("koko") Parrot koko) {
+    public Person(@Qualifier("p") Parrot p) {
         this.name = "test-123";
-        this.parrot = koko;
-        //parrot.setName("test-123");
+        this.parrot = p;
     }
 
 }

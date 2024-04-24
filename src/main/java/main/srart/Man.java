@@ -9,13 +9,12 @@ public class Man {
     public static void main(String[] args) {
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
-        Person person = context.getBean("person", Person.class);
-        System.out.println(person);
+//        Person person = context.getBean("person", Person.class);
+//        System.out.println(person);
+//
+//        System.out.println(person.getParrot().getName() + "\n");
 
-        System.out.println(person.getParrot().getName() + "\n");
-
-
-        Person p = context.getBean("p", Person.class);
+        Person p = context.getBean("person", Person.class);
         System.out.println(p);
 
         System.out.println(p.getParrot().getName());
