@@ -10,12 +10,19 @@ import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Component(value = "p")
 public class Person {
 
     String name;
 
     Parrot parrot;
+
+    @Autowired
+    public Person(Parrot parrot) {
+        this.name = "test-123";
+        this.parrot = parrot;
+        parrot.setName("test-123");
+    }
 
 }
