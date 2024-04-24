@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Data
@@ -19,7 +20,7 @@ public class Person {
     Parrot parrot;
 
     @Autowired
-    public Person(Parrot koko) {
+    public Person(Qualifier("koko") Parrot koko) {
         this.name = "test-123";
         this.parrot = koko;
         //parrot.setName("test-123");
