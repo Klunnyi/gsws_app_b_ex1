@@ -19,10 +19,10 @@ public class Person {
     Parrot parrot;
 
     @Autowired
-    public Person(Parrot parrot) {
+    public Person(Parrot koko) {
         this.name = "test-123";
-        this.parrot = parrot;
-        parrot.setName("test-123");
+        this.parrot = koko;
+        //parrot.setName("test-123");
     }
 
 }
