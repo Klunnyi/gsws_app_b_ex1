@@ -1,10 +1,10 @@
 package main.main;
 
 import main.config.ProjectConfig;
-import main.model.Car;
-import main.model.Dog;
-import main.model.Parrot;
-import main.model.Person;
+import main.model.*;
+import main.proxies.EmailCommentNotificationProxy;
+import main.repositories.DBCommentRepository;
+import main.services.CommentService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Objects;
@@ -13,14 +13,22 @@ import java.util.function.Supplier;
 public class Man {
 
     public static void main(String[] args) {
-        var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
+        var commentRepository = new DBCommentRepository();
+        var commentNotificationProxy = new EmailCommentNotificationProxy();
+        var commentService = new CommentService(commentRepository, commentNotificationProxy);
+        var comment = new Comment();
+        comment.setAuthor("Laurentiu");
+        comment.setText("Demo comment");
+        commentService.publishComment(comment);
 
-        Person person = context.getBean("person", Person.class);
-        System.out.println(person);
 
-        Parrot parrot = context.getBean("parrot", Parrot.class);
-        System.out.println(parrot);
+//        var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
+//
+//        Person person = context.getBean("person", Person.class);
+//        System.out.println(person);
 
+//        Parrot parrot = context.getBean("parrot", Parrot.class);
+//        System.out.println(parrot);
 
 
 //        Parrot getParrot = context.getBean(Parrot.class);

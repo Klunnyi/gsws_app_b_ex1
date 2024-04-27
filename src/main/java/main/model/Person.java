@@ -17,7 +17,10 @@ public class Person {
 
     String name;
 
-    @Autowired
     Parrot parrot;
 
+    @Autowired
+    public Person(Parrot miki) {
+        this.parrot = miki;
+    }
 }
