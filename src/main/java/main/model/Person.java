@@ -6,13 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Component
+@Component(value = "person")
 public class Person {
 
     String name;
@@ -23,4 +23,10 @@ public class Person {
     public Person(Parrot miki) {
         this.parrot = miki;
     }
+    @Autowired
+    public Person(@Qualifier("p") Parrot p) {
+        this.name = "test-123";
+        this.parrot = p;
+    }
+
 }
