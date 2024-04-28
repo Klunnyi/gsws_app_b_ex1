@@ -12,8 +12,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Car {
 
-    String name;
+   private String name;
 
-    String color;
+   private String color;
 
 }

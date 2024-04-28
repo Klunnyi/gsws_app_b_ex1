@@ -12,20 +12,28 @@ import org.springframework.context.annotation.Primary;
 @ComponentScan(basePackages = "main")
 public class ProjectConfig {
 
-//    @Bean(name = "koko")
-////    @Primary
-//    public Parrot parrot1() {
-//        var p = new Parrot();
-//        p.setName("Koko");
-//        return p;
-//    }
-//
-//    @Bean(value = "miki")
-//    public Parrot parrot2() {
-//        var p = new Parrot();
-//        p.setName("Miki");
-//        return p;
-//    }
+    @Bean(name = "Koko")
+//    @Primary
+    public Parrot parrot() {
+        var p = new Parrot();
+        p.setName("Koko");
+        return p;
+    }
+
+    @Bean()
+    @Primary
+    public Parrot parrot1() {
+        var p = new Parrot();
+        p.setName("Test");
+        return p;
+    }
+
+    @Bean(value = "miki")
+    public Parrot parrot2() {
+        var p = new Parrot();
+        p.setName("Miki");
+        return p;
+    }
 
 //    @Bean("riki")
 //    public Parrot parrot3() {
@@ -33,26 +41,26 @@ public class ProjectConfig {
 //        p.setName("Riki");
 //        return p;
 //    }
-//
-//    @Bean
-//    public String hello() {
-//        return "Hello";
-//    }
-//
-//    @Bean
+
+    @Bean
+    public String hello() {
+        return "Hello";
+    }
+
+    @Bean
+    @Primary
+    public Integer ten() {
+        return 10;
+    }
+
+    @Bean
+    public Integer five() {
+        return 5;
+    }
+
+//    @Bean(name = "p")
 //    @Primary
-//    public Integer ten() {
-//        return 10;
-//    }
-//
-//    @Bean
-//    public Integer five() {
-//        return 5;
-//    }
-//
-//    @Bean(name = "parrot")
-//    @Primary
-//    public Parrot parrot() {
+//    public Parrot p() {
 //        Parrot p = new Parrot();
 //        p.setName("Test");
 //        return p;

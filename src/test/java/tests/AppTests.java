@@ -22,13 +22,31 @@ public class AppTests {
     private ApplicationContext context;
 
     @Test
+    @DisplayName("Test that a Dog instance without a name has been added to the Spring context")
+    public void testDogWasAdded() {
+        Dog dog = context.getBean(Dog.class);
+
+        assertNotNull(dog);
+        //assertNull(dog.getName());
+    }
+
+    @Test
+    @DisplayName("Test that a Dog instance with a name 'Rex' has been added to the Spring context")
+    public void testInDogWasAddedPostContract() {
+        Dog dog = context.getBean(Dog.class);
+
+        assertNotNull(dog);
+        assertEquals("Rex", dog.getName());
+    }
+
+    @Test
     @DisplayName("Test that a Parrot instance " +
             "with the attribute name having the value Koko " +
             "has been added to the Spring context.")
     public void testKokoIsInTheSpringContext() {
-        Parrot p = context.getBean(Parrot.class);
+        Parrot p = context.getBean("Koko", Parrot.class);
 
-        assertEquals("Test", p.getName());
+        assertEquals("Koko", p.getName());
     }
 
     @Test
@@ -58,31 +76,12 @@ public class AppTests {
     }
 
     @Test
-    @DisplayName("Test that the Parrot instance parrot1 has name Koko")
+    @DisplayName("Test that the Parrot instance parrot has name Koko")
     public void testParrot1HasTheNameKoko() {
-        Parrot parrot1 = context.getBean("koko", Parrot.class);
+        Parrot parrot1 = context.getBean("Koko", Parrot.class);
 
         assertEquals("Koko", parrot1.getName());
     }
-
-    @Test
-    @DisplayName("Test that a Dog instance without a name has been added to the Spring context")
-    public void testDogWasAdded() {
-        Dog dog = context.getBean(Dog.class);
-
-        assertNotNull(dog);
-       //assertNull(dog.getName());
-    }
-
-    @Test
-    @DisplayName("Test that a Dog instance with a name 'Rex' has been added to the Spring context")
-    public void testInDogWasAddedPostContract() {
-        Dog dog = context.getBean(Dog.class);
-
-        assertNotNull(dog);
-        assertEquals("Rex", dog.getName());
-    }
-
 
     @Test
     @DisplayName("Test that a Person instance has been added to the Spring context")
@@ -94,14 +93,12 @@ public class AppTests {
 
     @Test
     @DisplayName("Test that the Person instance in the Spring context" +
-            "owns the Parrot instance from the Spring context")
+            "owns the Parrot instance with name Miki from the Spring context")
     public void testEllaOwnsKoko() {
         Person p = context.getBean(Person.class);
 
         assertNotNull(p.getParrot());
-        assertEquals("Test", p.getParrot().getName());
+        assertEquals("Miki", p.getParrot().getName());
     }
-
-
 
 }

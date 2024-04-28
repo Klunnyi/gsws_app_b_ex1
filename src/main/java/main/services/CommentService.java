@@ -21,5 +21,4 @@ public class CommentService {
         commentRepository.storeComment(comment);
         commentNotificationProxy.sendComment(comment);
     }
-
 }
