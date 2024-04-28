@@ -24,11 +24,16 @@ public class Man {
 
         var context = new AnnotationConfigApplicationContext(
                         ProjectConfig.class);
-        var comment = new Comment();
-        comment.setAuthor("Laurentiu");
-        comment.setText("Demo comment");
-        var commentService = context.getBean(CommentService.class);
-        commentService.publishComment(comment);
+//        var comment = new Comment();
+//        comment.setAuthor("Laurentiu");
+//        comment.setText("Demo comment");
+//        var commentService = context.getBean(CommentService.class);
+//        commentService.publishComment(comment);
+
+        CommentService comService1 = context.getBean("comService", CommentService.class);
+        CommentService comService2 = context.getBean("comService", CommentService.class);
+
+        System.out.println(comService1 == comService2);
 
 
 //        var context = new AnnotationConfigApplicationContext(ProjectConfig.class);

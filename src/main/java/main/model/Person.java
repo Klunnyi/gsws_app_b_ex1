@@ -24,10 +24,4 @@ public class Person {
         this.name = "Serhii";
         this.parrot = miki;
     }
-//    @Autowired
-//    public Person(@Qualifier("p") Parrot p) {
-//        this.name = "test-123";
-//        this.parrot = p;
-//    }
-
 }

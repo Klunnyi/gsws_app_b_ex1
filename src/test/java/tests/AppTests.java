@@ -1,12 +1,19 @@
 package tests;
 
 import main.config.ProjectConfig;
+import main.model.Comment;
 import main.model.Dog;
 import main.model.Parrot;
 import main.model.Person;
+import main.proxies.CommentNotificationProxy;
+import main.repositories.CommentRepository;
+import main.services.CommentService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,12 +21,56 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.mockito.Mockito.verify;
+
 @ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 @ContextConfiguration(classes = { ProjectConfig.class })
 public class AppTests {
 
     @Autowired
     private ApplicationContext context;
+
+    @Mock
+    private CommentRepository commentRepository;
+
+    @Mock
+    private CommentNotificationProxy commentNotificationProxy;
+
+    @InjectMocks
+    private CommentService commentService;
+
+    @Test
+    @DisplayName("Checking that commentService is singletonBean.")
+    public void testCommentServiceSingletonBean() {
+        CommentService comService1 = context.getBean("comService", CommentService.class);
+        CommentService comService2 = context.getBean("comService", CommentService.class);
+
+        assertEquals(comService1, comService2);
+    }
+
+    @Test
+    @DisplayName("Verify that CommentService every time you request an instance" +
+            " from the Spring context, you get the same instance")
+    public void testCommentServiceIsSingleton() {
+        var cs1 = context.getBean("commentService", CommentService.class);
+        var cs2 = context.getBean("commentService", CommentService.class);
+
+        assertEquals(cs1, cs2);
+    }
+
+    @Test
+    @DisplayName("Verify that dependencies of the " +
+            "CommentService object are correctly called.")
+    public void testCommentService() {
+        var comment = new Comment();
+
+        commentService.publishComment(comment);
+
+        verify(commentRepository).storeComment(comment);
+        verify(commentNotificationProxy).sendComment(comment);
+    }
+
 
     @Test
     @DisplayName("Test that a Dog instance without a name has been added to the Spring context")

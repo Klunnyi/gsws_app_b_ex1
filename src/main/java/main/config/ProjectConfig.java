@@ -2,6 +2,9 @@ package main.config;
 
 import main.model.Parrot;
 //import main.model.Person;
+import main.proxies.CommentNotificationProxy;
+import main.repositories.CommentRepository;
+import main.services.CommentService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +14,11 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 @ComponentScan(basePackages = "main")
 public class ProjectConfig {
+
+    @Bean("comService")
+    public CommentService commentService (CommentRepository commentRepository, CommentNotificationProxy commentNotificationProxy) {
+        return new CommentService(commentRepository, commentNotificationProxy);
+    }
 
     @Bean(name = "Koko")
 //    @Primary
