@@ -6,16 +6,14 @@ import main.proxies.CommentNotificationProxy;
 import main.repositories.CommentRepository;
 import main.services.CommentService;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 
 @Configuration
 @ComponentScan(basePackages = "main")
 public class ProjectConfig {
 
     @Bean("comService")
+    @Lazy
     public CommentService commentService (CommentRepository commentRepository, CommentNotificationProxy commentNotificationProxy) {
         return new CommentService(commentRepository, commentNotificationProxy);
     }
@@ -43,13 +41,6 @@ public class ProjectConfig {
         return p;
     }
 
-//    @Bean("riki")
-//    public Parrot parrot3() {
-//        var p = new Parrot();
-//        p.setName("Riki");
-//        return p;
-//    }
-
     @Bean
     public String hello() {
         return "Hello";
@@ -65,6 +56,13 @@ public class ProjectConfig {
     public Integer five() {
         return 5;
     }
+
+    //    @Bean("riki")
+//    public Parrot parrot3() {
+//        var p = new Parrot();
+//        p.setName("Riki");
+//        return p;
+//    }
 
 //    @Bean(name = "p")
 //    @Primary

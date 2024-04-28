@@ -11,8 +11,16 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 public class Man {
-
     public static void main(String[] args) {
+        var c = new AnnotationConfigApplicationContext(
+                ProjectConfig.class);
+
+        System.out.println("Before retrieving the CommentService");
+        var service = c.getBean("commentService", CommentService.class);
+        System.out.println("After retrieving the CommentService");
+
+
+
 //        var commentRepository = new DBCommentRepository();
 //        var commentNotificationProxy = new EmailCommentNotificationProxy();
 //        var commentService = new CommentService(commentRepository, commentNotificationProxy);
@@ -22,18 +30,16 @@ public class Man {
 //        commentService.publishComment(comment);
 
 
-        var context = new AnnotationConfigApplicationContext(
-                        ProjectConfig.class);
 //        var comment = new Comment();
 //        comment.setAuthor("Laurentiu");
 //        comment.setText("Demo comment");
 //        var commentService = context.getBean(CommentService.class);
 //        commentService.publishComment(comment);
 
-        CommentService comService1 = context.getBean("comService", CommentService.class);
-        CommentService comService2 = context.getBean("comService", CommentService.class);
-
-        System.out.println(comService1 == comService2);
+//        CommentService comService1 = context.getBean("comService", CommentService.class);
+//        CommentService comService2 = context.getBean("comService", CommentService.class);
+//
+//        System.out.println(comService1 == comService2);
 
 
 //        var context = new AnnotationConfigApplicationContext(ProjectConfig.class);

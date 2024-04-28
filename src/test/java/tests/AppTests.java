@@ -8,6 +8,7 @@ import main.model.Person;
 import main.proxies.CommentNotificationProxy;
 import main.repositories.CommentRepository;
 import main.services.CommentService;
+import main.services.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,12 +42,12 @@ public class AppTests {
     private CommentService commentService;
 
     @Test
-    @DisplayName("Checking that commentService is singletonBean.")
-    public void testCommentServiceSingletonBean() {
-        CommentService comService1 = context.getBean("comService", CommentService.class);
-        CommentService comService2 = context.getBean("comService", CommentService.class);
+    @DisplayName("Verify that CommentRepository every time in the Spring Beans the same instance")
+    public void testCommentRepositoryIsSingleton() {
+        var cs1 = context.getBean("commentService", CommentService.class);
+        var us2 = context.getBean("userService", UserService.class);
 
-        assertEquals(comService1, comService2);
+        assertEquals(cs1.getCommentRepository(), us2.getCommentRepository());
     }
 
     @Test
