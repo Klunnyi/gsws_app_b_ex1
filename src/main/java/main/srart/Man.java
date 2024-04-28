@@ -13,12 +13,21 @@ import java.util.function.Supplier;
 public class Man {
 
     public static void main(String[] args) {
-        var commentRepository = new DBCommentRepository();
-        var commentNotificationProxy = new EmailCommentNotificationProxy();
-        var commentService = new CommentService(commentRepository, commentNotificationProxy);
+//        var commentRepository = new DBCommentRepository();
+//        var commentNotificationProxy = new EmailCommentNotificationProxy();
+//        var commentService = new CommentService(commentRepository, commentNotificationProxy);
+//        var comment = new Comment();
+//        comment.setAuthor("Laurentiu");
+//        comment.setText("Demo comment");
+//        commentService.publishComment(comment);
+
+
+        var context = new AnnotationConfigApplicationContext(
+                        ProjectConfig.class);
         var comment = new Comment();
         comment.setAuthor("Laurentiu");
         comment.setText("Demo comment");
+        var commentService = context.getBean(CommentService.class);
         commentService.publishComment(comment);
 
 

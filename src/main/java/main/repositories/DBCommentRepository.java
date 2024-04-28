@@ -3,8 +3,9 @@ package main.repositories;
 import main.model.Comment;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 @Qualifier("PROXY")
 public class DBCommentRepository implements CommentRepository {
     @Override
