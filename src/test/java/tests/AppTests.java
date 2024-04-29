@@ -1,10 +1,7 @@
 package tests;
 
 import main.config.ProjectConfig;
-import main.model.Comment;
-import main.model.Dog;
-import main.model.Parrot;
-import main.model.Person;
+import main.model.*;
 import main.proxies.CommentNotificationProxy;
 import main.repositories.CommentRepository;
 import main.services.CommentService;
@@ -14,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -38,8 +36,27 @@ public class AppTests {
     @Mock
     private CommentNotificationProxy commentNotificationProxy;
 
+//    @Mock
+//    private CommentProcessor commentProcessorMock;
+
     @InjectMocks
     private CommentService commentService;
+
+//    @Test
+//    void testSendComment() {
+//        Comment testComment = new Comment("Test", "comment");
+//
+//        // Встановлюємо поведінку для мокованого CommentProcessor
+//        Mockito.when(commentProcessorMock.processComment(Mockito.any(Comment.class))).thenReturn("Processed");
+//        Mockito.when(commentProcessorMock.validateComment(Mockito.any(Comment.class))).thenReturn("Validated");
+//
+//        // Викликаємо метод, який ми тестуємо
+//        commentService.sendComment(testComment);
+//
+//        // Перевіряємо, чи викликали методи processComment та validateComment з CommentProcessor
+//        Mockito.verify(commentProcessorMock).processComment(testComment);
+//        Mockito.verify(commentProcessorMock).validateComment(testComment);
+//    }
 
     @Test
     @DisplayName("Verify that CommentRepository every time in the Spring Beans the same instance")

@@ -1,4 +1,4 @@
-package main.main;
+package main.srart;
 
 import main.config.ProjectConfig;
 import main.model.*;
@@ -12,12 +12,22 @@ import java.util.function.Supplier;
 
 public class Man {
     public static void main(String[] args) {
-        var c = new AnnotationConfigApplicationContext(
-                ProjectConfig.class);
 
-        System.out.println("Before retrieving the CommentService");
+        var c = new AnnotationConfigApplicationContext(ProjectConfig.class);
+
         var service = c.getBean("commentService", CommentService.class);
-        System.out.println("After retrieving the CommentService");
+
+        Comment comment = new Comment();
+        comment.setText("Demo comment");
+        comment.setAuthor("Natasha");
+        service.publishComment(comment);
+
+//        var c = new AnnotationConfigApplicationContext(
+//                ProjectConfig.class);
+//
+//        System.out.println("Before retrieving the CommentService");
+//        var service = c.getBean("commentService", CommentService.class);
+//        System.out.println("After retrieving the CommentService");
 
 
 

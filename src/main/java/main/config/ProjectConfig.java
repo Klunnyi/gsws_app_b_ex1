@@ -1,5 +1,6 @@
 package main.config;
 
+import main.aspects.LoggingAspect;
 import main.model.Parrot;
 //import main.model.Person;
 import main.proxies.CommentNotificationProxy;
@@ -11,7 +12,13 @@ import org.springframework.context.annotation.*;
 
 @Configuration
 @ComponentScan(basePackages = "main")
+@EnableAspectJAutoProxy
 public class ProjectConfig {
+
+    @Bean
+    public LoggingAspect aspect() {
+        return new LoggingAspect();
+    }
 
     @Bean("comService")
     @Lazy
