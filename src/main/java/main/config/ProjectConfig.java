@@ -6,6 +6,7 @@ import main.proxies.CommentNotificationProxy;
 import main.repositories.CommentRepository;
 import main.services.CommentService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
 
 @Configuration
@@ -14,6 +15,7 @@ public class ProjectConfig {
 
     @Bean("comService")
     @Lazy
+    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     public CommentService commentService (CommentRepository commentRepository, CommentNotificationProxy commentNotificationProxy) {
         return new CommentService(commentRepository, commentNotificationProxy);
     }

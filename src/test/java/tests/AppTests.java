@@ -61,6 +61,16 @@ public class AppTests {
     }
 
     @Test
+    @DisplayName("Verify that ComService every time you request an instance" +
+            " from the Spring context, you get the another instance")
+    public void testComServiceIsPrototype() {
+        var cs1 = context.getBean("comService", CommentService.class);
+        var cs2 = context.getBean("comService", CommentService.class);
+
+        assertNotEquals(cs1, cs2);
+    }
+
+    @Test
     @DisplayName("Verify that dependencies of the " +
             "CommentService object are correctly called.")
     public void testCommentService() {
