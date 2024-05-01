@@ -35,13 +35,16 @@ public class CommentService {
                           @Qualifier("EMAIL") CommentNotificationProxy commentNotificationProxy) {
         this.commentRepository = commentRepository;
         this.commentNotificationProxy = commentNotificationProxy;
-        System.out.println("Comment Service");
     }
 
-    public void publishComment(Comment comment) {
-        logger.info("Publishing comment:" + comment.getText());
-        commentRepository.storeComment(comment);
-        commentNotificationProxy.sendComment(comment);
+    public void print(Comment comment) {
+        String str = publishComment(comment);
+        System.out.println("print: " + str);
+    }
+
+    public String publishComment(Comment comment) {
+        System.out.println("-------->  Publishing comment:" + comment.getText());
+        return comment.getAuthor();
     }
 
     public void sendComment(Comment c) {

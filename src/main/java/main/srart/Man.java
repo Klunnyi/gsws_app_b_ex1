@@ -1,5 +1,6 @@
 package main.srart;
 
+import com.sun.tools.javac.Main;
 import main.config.ProjectConfig;
 import main.model.*;
 import main.proxies.EmailCommentNotificationProxy;
@@ -9,8 +10,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 public class Man {
+    private static Logger logger = Logger.getLogger(Main.class.getName());
+
     public static void main(String[] args) {
 
         var c = new AnnotationConfigApplicationContext(ProjectConfig.class);
@@ -20,16 +24,19 @@ public class Man {
         Comment comment = new Comment();
         comment.setText("Demo comment");
         comment.setAuthor("Natasha");
+
         service.publishComment(comment);
 
+
+
+        //logger.info(value);
+
 //        var c = new AnnotationConfigApplicationContext(
-//                ProjectConfig.class);
+//        ProjectConfig.class);
 //
 //        System.out.println("Before retrieving the CommentService");
 //        var service = c.getBean("commentService", CommentService.class);
 //        System.out.println("After retrieving the CommentService");
-
-
 
 //        var commentRepository = new DBCommentRepository();
 //        var commentNotificationProxy = new EmailCommentNotificationProxy();
@@ -38,7 +45,6 @@ public class Man {
 //        comment.setAuthor("Laurentiu");
 //        comment.setText("Demo comment");
 //        commentService.publishComment(comment);
-
 
 //        var comment = new Comment();
 //        comment.setAuthor("Laurentiu");

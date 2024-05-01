@@ -15,17 +15,17 @@ import org.springframework.context.annotation.*;
 @EnableAspectJAutoProxy
 public class ProjectConfig {
 
-    @Bean
-    public LoggingAspect aspect() {
-        return new LoggingAspect();
-    }
+//    @Bean
+//    public LoggingAspect aspect() {
+//        return new LoggingAspect();
+//    }
 
-    @Bean("comService")
-    @Lazy
-    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-    public CommentService commentService (CommentRepository commentRepository, CommentNotificationProxy commentNotificationProxy) {
-        return new CommentService(commentRepository, commentNotificationProxy);
-    }
+//    @Bean("comService")
+//    @Lazy
+//    @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+//    public CommentService commentService (CommentRepository commentRepository, CommentNotificationProxy commentNotificationProxy) {
+//        return new CommentService(commentRepository, commentNotificationProxy);
+//    }
 
     @Bean(name = "Koko")
 //    @Primary
