@@ -25,7 +25,9 @@ public class Man {
         comment.setText("Demo comment");
         comment.setAuthor("Natasha");
 
-        service.publishComment(comment);
+        //service.publishComment(comment);
+        service.deleteComment(comment);
+//        service.editComment(comment);
 
 
 

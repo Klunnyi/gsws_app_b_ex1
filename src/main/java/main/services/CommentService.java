@@ -2,6 +2,7 @@ package main.services;
 
 import lombok.Getter;
 import lombok.Setter;
+import main.aspects.ToLog;
 import main.model.Comment;
 import main.model.CommentProcessor;
 import main.proxies.CommentNotificationProxy;
@@ -37,15 +38,19 @@ public class CommentService {
         this.commentNotificationProxy = commentNotificationProxy;
     }
 
-    public void print(Comment comment) {
-        String str = publishComment(comment);
-        System.out.println("print: " + str);
+    public void publishComment(Comment comment) {
+        logger.info("Publishing comment:" + comment.getText());
     }
 
-    public String publishComment(Comment comment) {
-        System.out.println("-------->  Publishing comment:" + comment.getText());
-        return comment.getAuthor();
+    @ToLog
+    public void deleteComment(Comment comment) {
+        logger.info("Deleting comment: " + comment.getText());
     }
+
+    public void editComment(Comment comment) {
+        logger.info("Editing comment:" + comment.getText());
+    }
+
 
     public void sendComment(Comment c) {
         CommentProcessor commentProcessor = context.getBean(CommentProcessor.class);
