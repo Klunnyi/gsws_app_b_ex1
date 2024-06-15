@@ -20,27 +20,97 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = { ProjectConfig.class })
+@ContextConfiguration(classes = {ProjectConfig.class})
 public class AppTests {
 
     @Autowired
     private ApplicationContext context;
 
-    @Mock
-    private CommentRepository commentRepository;
+//    @Test
+//    @DisplayName("Test that a Parrot instance with the name Kiki " +
+//            "has been added to the Spring context.")
+//    public void testParrotWasAdded() {
+//        Parrot parrot = context.getBean(Parrot.class);
+//
+//        assertNotNull(parrot);
+//        assertEquals("Koko", parrot.getName());
+//    }
 
-    @Mock
-    private CommentNotificationProxy commentNotificationProxy;
+    @Test
+    @DisplayName("Test that the String 'hello' " +
+            "has been added to the Spring context.")
+    public void testHelloIsInTheSpringContext() {
+        String s = context.getBean(String.class);
+
+        assertEquals("hello", s);
+    }
+
+    @Test
+    @DisplayName("Test that a Integer 10  " +
+            "has been added to the Spring context")
+    public void testIntegerBean() {
+        Integer integerBean = context.getBean("ten", Integer.class);
+
+        assertNotNull(integerBean);
+        assertEquals(10, integerBean);
+    }
+
+    @Test
+    @DisplayName("Test that Parrot instance named parrot1 has the name Koko.")
+    public void testParrot1HasTheNameKoko() {
+        Parrot p = context.getBean("parrot1", Parrot.class);
+
+        assertEquals("Koko", p.getName());
+    }
+
+    @Test
+    @DisplayName("Test that Parrot instance named miki has the name Miki.")
+    public void testParrot2HasTheNameMiki() {
+        Parrot p = context.getBean("miki", Parrot.class);
+
+        assertEquals("Miki", p.getName());
+    }
+
+    @Test
+    @DisplayName("Test that Parrot instance named parrot3 has the name Riki.")
+    public void testParrot3HasTheNameRiki() {
+        Parrot p = context.getBean("parrot3", Parrot.class);
+
+        assertEquals("Riki", p.getName());
+    }
+
+    @Test
+    @DisplayName("Test that Parrot instance has name Miki.")
+    public void testParrotPrimaryNameTheNameRMiki() {
+        Parrot p = context.getBean(Parrot.class);
+        assertEquals("Miki", p.getName());
+    }
+
+
+
+
+
+
+
+
+
 
 //    @Mock
-//    private CommentProcessor commentProcessorMock;
-
-    @InjectMocks
-    private CommentService commentService;
+//    private CommentRepository commentRepository;
+//
+//    @Mock
+//    private CommentNotificationProxy commentNotificationProxy;
+//
+////    @Mock
+////    private CommentProcessor commentProcessorMock;
+//
+//    @InjectMocks
+//    private CommentService commentService;
 
 //    @Test
 //    void testSendComment() {
@@ -58,126 +128,126 @@ public class AppTests {
 //        Mockito.verify(commentProcessorMock).validateComment(testComment);
 //    }
 
-    @Test
-    @DisplayName("Verify that CommentRepository every time in the Spring Beans the same instance")
-    public void testCommentRepositoryIsSingleton() {
-        var cs1 = context.getBean("commentService", CommentService.class);
-        var us2 = context.getBean("userService", UserService.class);
-
-        assertEquals(cs1.getCommentRepository(), us2.getCommentRepository());
-    }
-
-    @Test
-    @DisplayName("Verify that CommentService every time you request an instance" +
-            " from the Spring context, you get the same instance")
-    public void testCommentServiceIsSingleton() {
-        var cs1 = context.getBean("commentService", CommentService.class);
-        var cs2 = context.getBean("commentService", CommentService.class);
-
-        assertEquals(cs1, cs2);
-    }
-
-    @Test
-    @DisplayName("Verify that ComService every time you request an instance" +
-            " from the Spring context, you get the another instance")
-    public void testComServiceIsPrototype() {
-        var cs1 = context.getBean("comService", CommentService.class);
-        var cs2 = context.getBean("comService", CommentService.class);
-
-        assertNotEquals(cs1, cs2);
-    }
-
-    @Test
-    @DisplayName("Verify that dependencies of the " +
-            "CommentService object are correctly called.")
-    public void testCommentService() {
-        var comment = new Comment();
-
-        commentService.publishComment(comment);
-
-        verify(commentRepository).storeComment(comment);
-        verify(commentNotificationProxy).sendComment(comment);
-    }
-
-
-    @Test
-    @DisplayName("Test that a Dog instance without a name has been added to the Spring context")
-    public void testDogWasAdded() {
-        Dog dog = context.getBean(Dog.class);
-
-        assertNotNull(dog);
-        //assertNull(dog.getName());
-    }
-
-    @Test
-    @DisplayName("Test that a Dog instance with a name 'Rex' has been added to the Spring context")
-    public void testInDogWasAddedPostContract() {
-        Dog dog = context.getBean(Dog.class);
-
-        assertNotNull(dog);
-        assertEquals("Rex", dog.getName());
-    }
-
-    @Test
-    @DisplayName("Test that a Parrot instance " +
-            "with the attribute name having the value Koko " +
-            "has been added to the Spring context.")
-    public void testKokoIsInTheSpringContext() {
-        Parrot p = context.getBean("Koko", Parrot.class);
-
-        assertEquals("Koko", p.getName());
-    }
-
-    @Test
-    @DisplayName("Test that the String 'hello' " +
-            "has been added to the Spring context.")
-    public void testHelloIsInTheSpringContext() {
-        String s = context.getBean(String.class);
-
-        assertEquals("Hello", s);
-    }
-
-    @Test
-    @DisplayName("Test that the Integer 10 " +
-            "has been added to the Spring context.")
-    public void test10IsInTheSpringContext() {
-        Integer i = context.getBean(Integer.class);
-
-        assertEquals(10, i);
-    }
-
-    @Test
-    @DisplayName("Test that the Parrot instance parrot1 named Test is primary")
-    public void testParrot1IsPrimary() {
-        Parrot p = context.getBean(Parrot.class);
-
-        assertEquals("Test", p.getName());
-    }
-
-    @Test
-    @DisplayName("Test that the Parrot instance parrot has name Koko")
-    public void testParrot1HasTheNameKoko() {
-        Parrot parrot1 = context.getBean("Koko", Parrot.class);
-
-        assertEquals("Koko", parrot1.getName());
-    }
-
-    @Test
-    @DisplayName("Test that a Person instance has been added to the Spring context")
-    public void testSerhiiIsinTheSpringContext() {
-        Person p = context.getBean(Person.class);
-
-        assertEquals("Serhii", p.getName());
-    }
-
-    @Test
-    @DisplayName("Test that the Person instance in the Spring context" +
-            "owns the Parrot instance with name Miki from the Spring context")
-    public void testEllaOwnsKoko() {
-        Person p = context.getBean(Person.class);
-
-        assertNotNull(p.getParrot());
-        assertEquals("Miki", p.getParrot().getName());
-    }
+//    @Test
+//    @DisplayName("Verify that CommentRepository every time in the Spring Beans the same instance")
+//    public void testCommentRepositoryIsSingleton() {
+//        var cs1 = context.getBean("commentService", CommentService.class);
+//        var us2 = context.getBean("userService", UserService.class);
+//
+//        assertEquals(cs1.getCommentRepository(), us2.getCommentRepository());
+//    }
+//
+//    @Test
+//    @DisplayName("Verify that CommentService every time you request an instance" +
+//            " from the Spring context, you get the same instance")
+//    public void testCommentServiceIsSingleton() {
+//        var cs1 = context.getBean("commentService", CommentService.class);
+//        var cs2 = context.getBean("commentService", CommentService.class);
+//
+//        assertEquals(cs1, cs2);
+//    }
+//
+//    @Test
+//    @DisplayName("Verify that ComService every time you request an instance" +
+//            " from the Spring context, you get the another instance")
+//    public void testComServiceIsPrototype() {
+//        var cs1 = context.getBean("comService", CommentService.class);
+//        var cs2 = context.getBean("comService", CommentService.class);
+//
+//        assertNotEquals(cs1, cs2);
+//    }
+//
+//    @Test
+//    @DisplayName("Verify that dependencies of the " +
+//            "CommentService object are correctly called.")
+//    public void testCommentService() {
+//        var comment = new Comment();
+//
+//        commentService.publishComment(comment);
+//
+//        verify(commentRepository).storeComment(comment);
+//        verify(commentNotificationProxy).sendComment(comment);
+//    }
+//
+//
+//    @Test
+//    @DisplayName("Test that a Dog instance without a name has been added to the Spring context")
+//    public void testDogWasAdded() {
+//        Dog dog = context.getBean(Dog.class);
+//
+//        assertNotNull(dog);
+//        //assertNull(dog.getName());
+//    }
+//
+//    @Test
+//    @DisplayName("Test that a Dog instance with a name 'Rex' has been added to the Spring context")
+//    public void testInDogWasAddedPostContract() {
+//        Dog dog = context.getBean(Dog.class);
+//
+//        assertNotNull(dog);
+//        assertEquals("Rex", dog.getName());
+//    }
+//
+//    @Test
+//    @DisplayName("Test that a Parrot instance " +
+//            "with the attribute name having the value Koko " +
+//            "has been added to the Spring context.")
+//    public void testKokoIsInTheSpringContext() {
+//        Parrot p = context.getBean("Koko", Parrot.class);
+//
+//        assertEquals("Koko", p.getName());
+//    }
+//
+//    @Test
+//    @DisplayName("Test that the String 'hello' " +
+//            "has been added to the Spring context.")
+//    public void testHelloIsInTheSpringContext() {
+//        String s = context.getBean(String.class);
+//
+//        assertEquals("Hello", s);
+//    }
+//
+//    @Test
+//    @DisplayName("Test that the Integer 10 " +
+//            "has been added to the Spring context.")
+//    public void test10IsInTheSpringContext() {
+//        Integer i = context.getBean(Integer.class);
+//
+//        assertEquals(10, i);
+//    }
+//
+//    @Test
+//    @DisplayName("Test that the Parrot instance parrot1 named Test is primary")
+//    public void testParrot1IsPrimary() {
+//        Parrot p = context.getBean(Parrot.class);
+//
+//        assertEquals("Test", p.getName());
+//    }
+//
+//    @Test
+//    @DisplayName("Test that the Parrot instance parrot has name Koko")
+//    public void testParrot1HasTheNameKoko() {
+//        Parrot parrot1 = context.getBean("Koko", Parrot.class);
+//
+//        assertEquals("Koko", parrot1.getName());
+//    }
+//
+//    @Test
+//    @DisplayName("Test that a Person instance has been added to the Spring context")
+//    public void testSerhiiIsinTheSpringContext() {
+//        Person p = context.getBean(Person.class);
+//
+//        assertEquals("Serhii", p.getName());
+//    }
+//
+//    @Test
+//    @DisplayName("Test that the Person instance in the Spring context" +
+//            "owns the Parrot instance with name Miki from the Spring context")
+//    public void testEllaOwnsKoko() {
+//        Person p = context.getBean(Person.class);
+//
+//        assertNotNull(p.getParrot());
+//        assertEquals("Miki", p.getParrot().getName());
+//    }
 
 }

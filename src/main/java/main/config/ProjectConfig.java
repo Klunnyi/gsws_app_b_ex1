@@ -16,6 +16,45 @@ import org.springframework.context.annotation.*;
 public class ProjectConfig {
 
 //    @Bean
+//    public Parrot parrot1() {
+//        Parrot parrot = new Parrot();
+//        parrot.setName("Koko");
+//        return parrot;
+//    }
+//
+//    @Bean(name = "miki")
+//    @Primary
+//    public Parrot parrot2() {
+//        Parrot parrot = new Parrot();
+//        parrot.setName("Miki");
+//        return parrot;
+//    }
+//
+//    @Bean
+//    public Parrot parrot3() {
+//        Parrot parrot = new Parrot();
+//        parrot.setName("Riki");
+//        return parrot;
+//    }
+
+    @Bean
+    public Integer ten() {
+        return 10;
+    }
+
+    @Bean
+    public String hello() {
+        return "hello";
+    }
+
+
+
+
+
+
+
+
+//    @Bean
 //    public LoggingAspect aspect() {
 //        return new LoggingAspect();
 //    }
@@ -27,44 +66,44 @@ public class ProjectConfig {
 //        return new CommentService(commentRepository, commentNotificationProxy);
 //    }
 
-    @Bean(name = "Koko")
+//    @Bean(name = "Koko")
+////    @Primary
+//    public Parrot parrot() {
+//        var p = new Parrot();
+//        p.setName("Koko");
+//        return p;
+//    }
+//
+//    @Bean()
 //    @Primary
-    public Parrot parrot() {
-        var p = new Parrot();
-        p.setName("Koko");
-        return p;
-    }
-
-    @Bean()
-    @Primary
-    public Parrot parrot1() {
-        var p = new Parrot();
-        p.setName("Test");
-        return p;
-    }
-
-    @Bean(value = "miki")
-    public Parrot parrot2() {
-        var p = new Parrot();
-        p.setName("Miki");
-        return p;
-    }
-
-    @Bean
-    public String hello() {
-        return "Hello";
-    }
-
-    @Bean
-    @Primary
-    public Integer ten() {
-        return 10;
-    }
-
-    @Bean
-    public Integer five() {
-        return 5;
-    }
+//    public Parrot parrot1() {
+//        var p = new Parrot();
+//        p.setName("Test");
+//        return p;
+//    }
+//
+//    @Bean(value = "miki")
+//    public Parrot parrot2() {
+//        var p = new Parrot();
+//        p.setName("Miki");
+//        return p;
+//    }
+//
+//    @Bean
+//    public String hello() {
+//        return "Hello";
+//    }
+//
+//    @Bean
+//    @Primary
+//    public Integer ten() {
+//        return 10;
+//    }
+//
+//    @Bean
+//    public Integer five() {
+//        return 5;
+//    }
 
     //    @Bean("riki")
 //    public Parrot parrot3() {

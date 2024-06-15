@@ -19,16 +19,38 @@ public class Man {
 
         var c = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
-        var service = c.getBean("commentService", CommentService.class);
+        Parrot p = c.getBean(Parrot.class);
+        System.out.println(p.getName());
 
-        Comment comment = new Comment();
-        comment.setText("Demo comment");
-        comment.setAuthor("Natasha");
+//        Parrot bean2 = c.getBean("parrot2",Parrot.class);
+//        System.out.println(bean2.getName());
+//
+//        Parrot bean3 = c.getBean("parrot3",Parrot.class);
+//        System.out.println(bean3.getName());
+
+//        Integer ten = c.getBean("ten", Integer.class);
+//        System.out.println(ten);
+//
+//        String hello = c.getBean("hello", String.class);
+//        System.out.println(hello);
+//
+//
+//        String bean1 = c.getBean(String.class);
+//        System.out.println(bean1);
+//
+//        Integer bean2 = c.getBean(Integer.class);
+//        System.out.println(bean2);
+
+
+//        var service = c.getBean("commentService", CommentService.class);
+//
+//        Comment comment = new Comment();
+//        comment.setText("Demo comment");
+//        comment.setAuthor("Natasha");
 
         //service.publishComment(comment);
-        service.deleteComment(comment);
+//        service.deleteComment(comment);
 //        service.editComment(comment);
-
 
 
         //logger.info(value);

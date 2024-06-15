@@ -1,27 +1,27 @@
-package main.model;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Data
-@NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@Component(value = "person")
-public class Person {
-
-    String name;
-
-    Parrot parrot;
-
-    @Autowired
-    public Person(@Qualifier("miki") Parrot miki) {
-        this.name = "Serhii";
-        this.parrot = miki;
-    }
-}
+//package main.model;
+//
+//import lombok.AccessLevel;
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
+//import lombok.experimental.FieldDefaults;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Qualifier;
+//import org.springframework.stereotype.Component;
+//
+//@Data
+//@NoArgsConstructor
+//@FieldDefaults(level = AccessLevel.PRIVATE)
+//@Component(value = "person")
+//public class Person {
+//
+//    String name;
+//
+//    Parrot parrot;
+//
+//    @Autowired
+//    public Person(@Qualifier("miki") Parrot miki) {
+//        this.name = "Serhii";
+//        this.parrot = miki;
+//    }
+//}
